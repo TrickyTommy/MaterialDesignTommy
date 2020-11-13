@@ -30,10 +30,10 @@ class NormalMatrialDesignNothree : AppCompatActivity() {
 
         binding.rvProduct.adapter = adapter
 
-        ProductClient.apiService.getAllProduct().enqueue(object : Callback<List<ProductModel>> {
+        ProductClient.apiService.getAllProduct().enqueue(object : Callback<MutableList<ProductModel>> {
             override fun onResponse(
-                call: Call<List<ProductModel>>,
-                response: Response<List<ProductModel>>
+                call: Call<MutableList<ProductModel>>,
+                response: Response<MutableList<ProductModel>>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let { adapter.setData(it) }
@@ -43,7 +43,7 @@ class NormalMatrialDesignNothree : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
+            override fun onFailure(call: Call<MutableList<ProductModel>>, t: Throwable) {
                 t.printStackTrace()
 
                 Toast.makeText(this@NormalMatrialDesignNothree, t.message, Toast.LENGTH_SHORT).show()
