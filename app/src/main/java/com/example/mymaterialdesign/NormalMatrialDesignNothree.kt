@@ -16,3 +16,4 @@ class NormalMatrialDesignNothree : AppCompatActivity() {
         setContentView(R.layout.activity_normal_matrial_design_nothree)
 
 }
+}
