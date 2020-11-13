@@ -27,7 +27,7 @@ class AdapterProduct(private val context: Context) :
         fun binData(product: ProductModel) {
             binding.tvProduct.text = product.title
             binding.tvPrice.text = "$${product.price}"
-            Glide.with(binding.root).load(product.image).into(binding.ivProduct)
+            Glide.with(binding.root).load(product.imageUrl).into(binding.ivProduct)
         }
     }
 
