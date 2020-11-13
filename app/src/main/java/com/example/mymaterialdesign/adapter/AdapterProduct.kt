@@ -18,6 +18,7 @@ class AdapterProduct(private val context: Context) :
 
     fun setData(data: List<ProductModel>) {
         products = data
+        data.forEach{println("sretdata : $it")}
         notifyDataSetChanged()
     }
 
@@ -25,6 +26,8 @@ class AdapterProduct(private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun binData(product: ProductModel) {
+
+            print(" TEST: ${product.toString()}")
             binding.tvProduct.text = product.title
             binding.tvPrice.text = "$${product.price}"
             Glide.with(binding.root).load(product.imageUrl).into(binding.ivProduct)

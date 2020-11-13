@@ -8,5 +8,5 @@ import com.example.mymaterialdesign.model.ProductModel
 interface ProductServices {
 
     @GET("products")
-    fun getAllProduct(): Call<MutableList<ProductModel>>
+    fun getAllProduct(): Call<List<ProductModel>>
 }

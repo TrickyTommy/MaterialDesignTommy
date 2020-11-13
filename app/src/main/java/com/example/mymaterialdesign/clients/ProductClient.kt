@@ -1,4 +1,5 @@
 package com.example.mymaterialdesign.clients
+
 import com.example.mymaterialdesign.services.ProductServices
 import com.example.mymaterialdesign.util.UtilProduct
 import com.google.gson.Gson
@@ -8,30 +9,18 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 object ProductClient {
-    private const val BASE_URL = "https://fakestoreapi.com/"
-
-    private val gson: Gson by lazy {
-        GsonBuilder().setLenient().create()
-    }
-
-    private val interceptor: HttpLoggingInterceptor by lazy {
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
-
-    private val httpClient : OkHttpClient by lazy {
-        OkHttpClient.Builder().addInterceptor(interceptor).build()
-    }
-
-    private val retrofit: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(httpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+    val service: ProductServices by lazy {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://fakestoreapi.com/")
+            .addConverterFactory(
+                GsonConverterFactory.create(
+                    GsonBuilder().setLenient().create()
+                )
+            )
             .build()
-    }
 
-    val apiService: ProductServices by lazy {
         retrofit.create(ProductServices::class.java)
     }
 }
