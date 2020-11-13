@@ -11,7 +11,8 @@ import com.example.mymaterialdesign.databinding.ItemProductBinding
 
 
 
-class AdapterProduct(private val context: Context):RecyclerView.Adapter<AdapterProduct.ViewHolder>(){
+class AdapterProduct(private val context: Context) :
+    RecyclerView.Adapter<AdapterProduct.ViewHolder>() {
 
     private var products = listOf<ProductModel>()
 
@@ -20,15 +21,20 @@ class AdapterProduct(private val context: Context):RecyclerView.Adapter<AdapterP
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val context: Context, private val binding:ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun binData(product: ProductModel) {
             binding.tvProduct.text = product.title
             binding.tvPrice.text = "$${product.price}"
-            Glide.with(binding.root).load(product.imageUrl).into(binding.ivProduct)
+            Glide.with(binding.root).load(product.image).into(binding.ivProduct)
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterProduct.ViewHolder {
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
         return ViewHolder(
             ItemProductBinding.inflate(
                 LayoutInflater.from(context),
@@ -38,16 +44,11 @@ class AdapterProduct(private val context: Context):RecyclerView.Adapter<AdapterP
         )
     }
 
-
-    override fun onBindViewHolder(holder: AdapterProduct.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binData(products[position])
     }
 
     override fun getItemCount(): Int = products.size
-    }
-
-
-
-
+}
 
 
