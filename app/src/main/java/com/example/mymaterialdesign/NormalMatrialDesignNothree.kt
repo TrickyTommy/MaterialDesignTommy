@@ -30,10 +30,7 @@ class NormalMatrialDesignNothree : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.rvProduct.apply {
-            this.layoutManager =  StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-            this.adapter = adapter
-        }
+        binding.rvProduct.adapter = adapter
 
         ProductClient.service.getAllProduct().enqueue(object : Callback<List<ProductModel>> {
             override fun onResponse(
